@@ -19,7 +19,10 @@ class TestShoe:
         stan_smith = Shoe("Adidas", 9)
         captured_out = io.StringIO()
         sys.stdout = captured_out
-        stan_smith.size = "not an integer"
+        try:
+            stan_smith.set_size("not an integer")
+        except TypeError as e:
+            print(e)
         sys.stdout = sys.__stdout__
         assert captured_out.getvalue() == "size must be an integer\n"
 
